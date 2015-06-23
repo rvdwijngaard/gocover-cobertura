@@ -50,7 +50,11 @@ func convert(in io.Reader, out io.Writer) {
 func (cov *Coverage) parseProfiles(profiles []*Profile) error {
 	cov.Packages = []*Package{}
 	for _, profile := range profiles {
-		cov.parseProfile(profile)
+		err := cov.parseProfile(profile)
+		if err != nil {
+			panic(err)
+		}
+			
 	}
 	return nil
 }
